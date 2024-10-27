@@ -1,6 +1,10 @@
 package net.studios.capymod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.studios.capymod.item.ModCreativeModeTabs;
+import net.studios.capymod.item.Moditems;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -11,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.studios.capymod.item.Moditems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -21,6 +26,11 @@ public class CapyMod {
 
     public CapyMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModCreativeModeTabs.register(modEventBus);
+
+        //Registro del item creado para el tameo del capybara
+        Moditems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -33,8 +43,12 @@ public class CapyMod {
     }
 
     // Add the example block item to the building blocks tab
+    // Tambien aqui se hace el registro dentro del menu de creativo
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(Moditems.LETTUCE);
+            event.accept(Moditems.SALAD);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
