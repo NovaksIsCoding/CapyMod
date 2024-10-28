@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.studios.capymod.CapyMod;
+import net.studios.capymod.blocks.CapyBlocks;
 
 public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS
@@ -19,6 +20,7 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(Moditems.LETTUCE.get());
                         pOutput.accept(Moditems.SALAD.get());
+                        pOutput.accept(Moditems.LETTUCE_SEEDS.get());
                     })
                     .build());
     public static void register(IEventBus eventBus) {

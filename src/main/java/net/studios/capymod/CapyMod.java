@@ -1,8 +1,11 @@
 package net.studios.capymod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.OptionInstance;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.studios.capymod.blocks.CapyBlocks;
 import net.studios.capymod.item.ModCreativeModeTabs;
+import net.studios.capymod.item.ModFoods;
 import net.studios.capymod.item.Moditems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.api.distmarker.Dist;
@@ -31,6 +34,8 @@ public class CapyMod {
 
         //Registro del item creado para el tameo del capybara
         Moditems.register(modEventBus);
+        //Bloques
+        CapyBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
